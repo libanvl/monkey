@@ -1,0 +1,16 @@
+﻿@page "/page/{*pageRoute}"
+
+@if (pageMatter != null)
+{
+    <PageTitle>@pageMatter.Title</PageTitle>
+    @if (pageMatter.Published)
+    {
+        <h4>Published</h4>
+    }
+    else
+    {
+        <h4>Unpublished</h4>
+    }
+}
+
+<div>@pageContent</div>
