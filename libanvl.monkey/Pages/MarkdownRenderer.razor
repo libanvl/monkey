@@ -1,16 +1,17 @@
 ﻿@page "/page/{*pageRoute}"
+@inject NavigationManager NavigationManager
 
-@if (pageMatter != null)
+@if (PageRoute is not null)
 {
-    <PageTitle>@pageMatter.Title</PageTitle>
-    @if (pageMatter.Published)
-    {
-        <h4>Published</h4>
-    }
-    else
-    {
-        <h4>Unpublished</h4>
-    }
+    <SourceMarkdownPage PagePath="@PageRoute" OnFetchFailed="OnFetchFailed" />
 }
 
-<div>@pageContent</div>
+@code {
+    [Parameter]
+    public string? PageRoute { get; set; }
+
+    private void OnFetchFailed()
+    {
+        NavigationManager.NavigateTo("404");
+    }
+}
