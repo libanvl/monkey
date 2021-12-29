@@ -7,26 +7,28 @@ using YamlDotNet.Serialization;
 
 namespace libanvl.monkey.components;
 
+public delegate HtmlRenderer HtmlRendererFactory();
+
 public class MarkdownParser
 {
     private readonly MarkdownPipeline _pipeline;
-    private readonly Func<HtmlRenderer> _renderer;
+    private readonly HtmlRendererFactory _rendererFactory;
     private readonly IDeserializer _deserializer;
 
-    public MarkdownParser(MarkdownPipeline pipeline, Func<HtmlRenderer> renderer, IDeserializer deserializer)
+    public MarkdownParser(MarkdownPipeline pipeline, HtmlRendererFactory renderer, IDeserializer deserializer)
     {
         ArgumentNullException.ThrowIfNull(pipeline);
         ArgumentNullException.ThrowIfNull(renderer);
         ArgumentNullException.ThrowIfNull(deserializer);
 
         _pipeline = pipeline;
-        _renderer = renderer;
+        _rendererFactory = renderer;
         _deserializer = deserializer;
     }
 
     public async Task<MarkdownParserResult<TMeta>> ParseAsync<TMeta>(string content) where TMeta : new()
     {
-        var renderer = _renderer();
+        var renderer = _rendererFactory();
         _pipeline.Setup(renderer);
 
         var document = Markdown.Parse(content, _pipeline);

@@ -23,7 +23,7 @@ public static class WebAssemblyHostExtensions
             .WithNamingConvention(UnderscoredNamingConvention.Instance)
             .Build());
 
-        services.AddScoped(sp =>
+        services.AddScoped<HtmlRendererFactory>(sp =>
         {
             return () => new HtmlRenderer(new StringWriter());
         });
