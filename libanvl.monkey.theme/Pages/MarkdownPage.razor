@@ -1,0 +1,20 @@
+﻿@page "/page/{*pageRoute}"
+@layout SingleLayout
+@inject NavigationManager NavigationManager
+
+@if (PageRoute is not null)
+{
+    <ErrorBoundary>
+        <SourceMarkdown PagePath="@PageRoute" OnSourceFailed="OnFetchFailed" />
+    </ErrorBoundary>
+}
+<!--  CodeTheme="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/monokai.min.css" -->
+@code {
+    [Parameter]
+    public string? PageRoute { get; set; }
+
+    private void OnFetchFailed()
+    {
+        NavigationManager.NavigateTo("404");
+    }
+}

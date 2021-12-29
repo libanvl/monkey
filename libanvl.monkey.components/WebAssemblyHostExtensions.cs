@@ -1,5 +1,4 @@
 ﻿using Markdig;
-using Markdig.Prism;
 using Markdig.Renderers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +14,6 @@ public static class WebAssemblyHostExtensions
         services.AddScoped(_ => new MarkdownPipelineBuilder()
             .UseAdvancedExtensions()
             .UseYamlFrontMatter()
-            .UsePrism()
             .DisableHtml()
             .Build());
 
@@ -37,5 +35,6 @@ public static class WebAssemblyHostExtensions
             configuration["Branch"]);
 
         services.AddHttpClient<SourceContentHttpClient>(client => client.BaseAddress = new Uri(rawContentUri));
+        services.AddHttpClient<SourceApiHttpClient>(client => client.BaseAddress = new Uri("https://api.github.com/"));
     }
 }

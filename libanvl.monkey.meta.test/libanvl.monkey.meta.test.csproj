@@ -21,8 +21,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\libanvl.monkey.meta\libanvl.monkey.meta.csproj" />
-  </ItemGroup>
-
 </Project>

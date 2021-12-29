@@ -10,13 +10,6 @@ public class SourceContentHttpClient
 
     public async Task<string> GetMarkdownPageAsync(string route, CancellationToken cancellationToken = default)
     {
-        try
-        {
-            return  await _http.GetStringAsync($"page/{route}.md", cancellationToken);
-        }
-        catch
-        {
-            return string.Empty;
-        }
+        return await _http.GetStringAsync($"page/{route}.md", cancellationToken);
     }
 }
