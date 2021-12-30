@@ -20,8 +20,4 @@
     <ProjectReference Include="..\libanvl.monkey.theme\libanvl.monkey.theme.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Clients\" />
-  </ItemGroup>
-
 </Project>
