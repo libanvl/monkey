@@ -24,4 +24,9 @@
     <Folder Include="Clients\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\libanvl.monkey.theme\Shared\MainSidebar.razor" Link="MainSidebar.razor" />
+    <None Include="..\libanvl.monkey.theme\Shared\PageIntro.razor" Link="PageIntro.razor" />
+  </ItemGroup>
+
 </Project>

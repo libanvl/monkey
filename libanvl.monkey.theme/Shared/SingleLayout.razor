@@ -1,14 +1,11 @@
 ﻿@inherits LayoutComponentBase
-
-<div id="wrapper">
-  <PageHeader SiteName="Monkey Demo" />
-  <PageMenu />
+@layout ThemeLayout
 
 <!-- Main -->
-  <div id="main">
-    @Body
-  </div>
+<PageWrapper IsSingle="@true">
+    <PageContent>
+        @Body
+    </PageContent>
 
-  <PageFooter />
-
-</div>
+    <PageFooter />
+</PageWrapper>

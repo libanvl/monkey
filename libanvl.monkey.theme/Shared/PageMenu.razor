@@ -1,40 +1,27 @@
-<section id="menu">
-    <!-- Search -->
-    <section>
-        <form class="search" method="get" action="#">
-            <input type="text" name="query" placeholder="Search" />
-        </form>
-    </section>
+@using libanvl.monkey.theme.Model
+
+<section id="menu" class="@(Visible ? "is-menu-visible" : "")">
 
     <!-- Links -->
-    <section>
-        <ul class="links">
-            <li>
-                <NavLink href="page/about">
-                    <h3>About</h3>
-                    <p>Feugiat tempus veroeros dolor</p>
-                </NavLink>
-            </li>
-            <li>
-                <NavLink href="page/awesome/now">
-                    <h3>Awesome Now</h3>
-                    <p>Sed vitae justo condimentum</p>
-                </NavLink>
-            </li>
-            <li>
-                <a href="#">
-                    <h3>Feugiat veroeros</h3>
-                    <p>Phasellus sed ultricies mi congue</p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <h3>Etiam sed consequat</h3>
-                    <p>Porta lectus amet ultricies</p>
-                </a>
-            </li>
-        </ul>
-    </section>
+    @if (Links is not null)
+    {
+        <section>
+            <ul class="links">
+                @foreach (var link in Links)
+                {
+                    <li>
+                        <NavLink href="@link.Href" @onclick="() => VisibilityRequested.InvokeAsync(false)">
+                            <h3>@link.Title</h3>
+                            @if (link.Description is not null)
+                            {
+                                <p>@link.Description</p>
+                            }
+                        </NavLink>
+                    </li>
+                }
+            </ul>
+        </section>
+    }
 
     <!-- Actions -->
     <section>
@@ -43,3 +30,11 @@
         </ul>
     </section>
 </section>
+
+@code {
+    [CascadingParameter] public PageLink[]? Links { get; set; }
+
+    [Parameter] public bool Visible { get; set; }
+
+    [Parameter] public EventCallback<bool> VisibilityRequested { get; set; }
+}

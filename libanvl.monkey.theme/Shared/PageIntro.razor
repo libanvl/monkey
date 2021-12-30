@@ -1,0 +1,15 @@
+@using libanvl.monkey.theme.Model
+<section id="intro">
+    @if (SiteInfo.Logo is not null)
+    {
+        <a href="#" class="logo"><img src="@SiteInfo.Logo.Value.Src" alt="@SiteInfo.Logo.Value.Alt" /></a>
+    }
+    <header>
+        <h2>@SiteInfo.Title</h2>
+        <p>@SiteInfo.Description</p>
+    </header>
+</section>
+
+@code {
+    [CascadingParameter] public SiteInfo SiteInfo { get; set; }
+}

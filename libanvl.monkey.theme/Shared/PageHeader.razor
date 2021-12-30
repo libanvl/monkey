@@ -1,29 +1,53 @@
-﻿<header id="header">
-    <h1><NavLink href="">@SiteName</NavLink></h1>
-    <nav class="links">
-        <ul>
-            <li><NavLink href="page/about">About</NavLink></li>
-            <li><NavLink href="page/awesome/now">Awesome</NavLink></li>
-            <li><a href="#">Feugiat</a></li>
-            <li><a href="#">Tempus</a></li>
-            <li><a href="#">Adipiscing</a></li>
-        </ul>
-    </nav>
+﻿@using libanvl.monkey.theme.Model
+
+<header id="header">
+    <h1><NavLink href="">@SiteInfo.Title</NavLink></h1>
+
+    @if (Links is not null)
+    {
+        <nav class="links">
+            <ul>
+                @foreach (var link in Links)
+                {
+                    <li><NavLink href="@link.Href">@link.Title</NavLink></li>
+                }
+            </ul>
+        </nav>
+    }
+
     <nav class="main">
         <ul>
             <li class="search">
-                <a class="fa-search" href="#search">Search</a>
+                <a class="fa-search" href="">Search</a>
                 <form id="search" method="get" action="#">
                     <input type="text" name="query" placeholder="Search" />
                 </form>
             </li>
-            <li class="menu">
-                <NavLink class="fa-bars" href="#menu">Menu</NavLink>
+            <li class="menu" @onclick="ToggleMenuVisible">
+                <a class="fa-bars">Menu</a>
             </li>
         </ul>
     </nav>
 </header>
 
+<CascadingValue Value="@Links">
+    <PageMenu Visible="@menuVisible" VisibilityRequested="OnMenuVisibilityRequested"/>
+</CascadingValue>
+
 @code {
-    [Parameter] public string? SiteName { get; set; }
+    private bool menuVisible = false;
+
+    [CascadingParameter] public SiteInfo SiteInfo { get; set; }
+
+    [Parameter] public PageLink[]? Links { get; set; }
+
+    private void ToggleMenuVisible()
+    {
+        menuVisible = !menuVisible;
+    }
+
+    public void OnMenuVisibilityRequested(bool isVisible)
+    {
+        menuVisible = isVisible;
+    }
 }

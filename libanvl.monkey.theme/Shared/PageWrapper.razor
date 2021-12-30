@@ -1,0 +1,9 @@
+﻿<div id="wrapper" class="@(IsSingle ? "single" : null)">
+  @ChildContent
+</div>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    [Parameter] public bool IsSingle { get; set; }
+}
