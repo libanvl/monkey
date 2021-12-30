@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>10</LangVersion>
-    <LibSassOutputStyle Condition="'$(Configuration)' == 'Debug'">expanded</LibSassOutputStyle>
+    <LibSassOutputStyle>expanded</LibSassOutputStyle>
   </PropertyGroup>
 
 
