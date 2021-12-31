@@ -1,13 +1,13 @@
 @using libanvl.monkey.theme.Model
 
-<section id="menu" class="@(Visible ? "is-menu-visible" : "")">
+<section id="menu" class="@(Visible ? "is-menu-visible" : "")" @onclick="() => VisibilityRequested.InvokeAsync(false)">
 
     <!-- Links -->
-    @if (Links is not null)
+    @if (SiteInfo.Links is not null)
     {
         <section>
             <ul class="links">
-                @foreach (var link in Links)
+                @foreach (var link in SiteInfo.Links)
                 {
                     <li>
                         <NavLink href="@link.Href" @onclick="() => VisibilityRequested.InvokeAsync(false)">
@@ -25,14 +25,14 @@
 
     <!-- Actions -->
     <section>
-        <ul class="actions stacked">
-            <li><a href="#" class="button large fit">Log In</a></li>
-        </ul>
+        <Actions Stacked="@true" Children="@(new[] {
+          new LargeButtonAction("Log In", "", "fit"),
+        })" />
     </section>
 </section>
 
 @code {
-    [CascadingParameter] public PageLink[]? Links { get; set; }
+    [CascadingParameter] public SiteInfo SiteInfo { get; set; }
 
     [Parameter] public bool Visible { get; set; }
 

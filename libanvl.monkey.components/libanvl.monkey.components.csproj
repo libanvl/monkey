@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Shared\SourceMarkdown.razor.js" />
+    <Content Include="Shared\SyntaxHighlight.razor.js" />
   </ItemGroup>
 
   <ItemGroup>

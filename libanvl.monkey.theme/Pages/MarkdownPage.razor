@@ -1,20 +1,60 @@
 ﻿@page "/page/{*pageRoute}"
 @layout SingleLayout
 @inject NavigationManager NavigationManager
+@inject SourceContentHttpClient ContentClient
+@inject MarkdownParser Markdown
 
-@if (PageRoute is not null)
+@if (ready)
 {
-    <ErrorBoundary>
-        <SourceMarkdown PagePath="@PageRoute" OnSourceFailed="OnFetchFailed" />
-    </ErrorBoundary>
+    @if (PageRoute is not null)
+    {
+        @if (meta is not null)
+        {
+            <PageTitle>@meta.Title</PageTitle>
+        }
+
+        <Post Title="@meta?.Title" SubTitle="@meta?.SubTitle" EnableActions="@false">
+            <SyntaxHighlight AdditionalLanguages="@(new[] {"go", "rust"})" CodeTheme="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/monokai.min.css">
+                @content
+            </SyntaxHighlight>
+        </Post>
+    }
 }
-<!--  CodeTheme="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/monokai.min.css" -->
+else
+{
+    <p><em>Loading...</em></p>
+}
+
+
 @code {
+    private PageMatter? meta;
+    private MarkupString content;
+    private bool ready = false;
+
     [Parameter]
     public string? PageRoute { get; set; }
 
-    private void OnFetchFailed()
+    protected override async Task OnParametersSetAsync()
     {
-        NavigationManager.NavigateTo("404");
+        if (PageRoute is null)
+        {
+            return;
+        }
+
+        ready = false;
+
+        ArgumentNullException.ThrowIfNull(ContentClient);
+        ArgumentNullException.ThrowIfNull(Markdown);
+
+        try
+        {
+            var source = await ContentClient.GetMarkdownPageAsync(PageRoute);
+            (meta, content) = await Markdown.ParseAsync<PageMatter>(source);
+            ready = true;
+        }
+        catch
+        {
+            NavigationManager.NavigateTo("404");
+        }
     }
 }

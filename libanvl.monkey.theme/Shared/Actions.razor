@@ -1,0 +1,20 @@
+﻿@using libanvl.monkey.theme.Model
+
+<ul class="actions @(Stacked ? "stacked" : null) @(Fit ? "fit" : null) @(Special ? "special" : null) @(Pagination ? "pagination" : null)">
+    @foreach (ActionInfo child in Children)
+    {
+        <li><a href="@child.Href" class="@child.Classes">@child.Title</a></li>
+    }
+</ul>
+
+@code {
+    [Parameter] public bool Stacked { get; set; }
+
+    [Parameter] public bool Fit { get; set; }
+
+    [Parameter] public bool Special { get; set; }
+
+    [Parameter] public bool Pagination { get; set; }
+
+    [Parameter] public ActionInfo[] Children { get; set; } = Array.Empty<ActionInfo>();
+}

@@ -1,7 +1,8 @@
-﻿<article class="post">
+﻿@using libanvl.monkey.theme.Model
+<article class="post">
     <header>
         <div class="title">
-            <h2><a href="single.html">@Title</a></h2>
+            <h2><a href="@TitleHref">@Title</a></h2>
             <p>@SubTitle</p>
         </div>
         <div class="meta">
@@ -18,9 +19,11 @@
     @ChildContent
 
     <footer>
-        <ul class="actions">
-            <li><a href="single.html" class="button large">Continue Reading</a></li>
-        </ul>
+        @if (EnableActions)
+        {
+          <Actions Children="@(new[] { new LargeButtonAction("Continue Reading", TitleHref ?? string.Empty) })"/>
+        }
+
         <ul class="stats">
             <li><a href="#">General</a></li>
             <li><a href="#" class="icon solid fa-heart">28</a></li>
@@ -35,6 +38,10 @@
     [Parameter] public string SubTitle { get; set; } = "Lorem ipsum dolor amet nullam consequat etiam feugiat";
 
     [Parameter] public string? FeaturedImage { get; set; }
+
+    [Parameter] public string? TitleHref { get; set; }
+
+    [Parameter] public bool EnableActions { get; set; } = true;
 
     [Parameter] public RenderFragment? ChildContent { get; set; }
 }

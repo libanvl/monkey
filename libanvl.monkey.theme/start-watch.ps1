@@ -1,0 +1,1 @@
+dotnet watch tool run webcompiler -r . -c .\webcompilerconfiguration.json

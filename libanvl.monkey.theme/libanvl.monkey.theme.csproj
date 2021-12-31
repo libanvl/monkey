@@ -1,20 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <LangVersion>10</LangVersion>
-    <LibSassOutputStyle>expanded</LibSassOutputStyle>
   </PropertyGroup>
-
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LibSassBuilder" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.1" />
   </ItemGroup>
 
@@ -22,4 +15,22 @@
     <ProjectReference Include="..\libanvl.monkey.components\libanvl.monkey.components.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Include="**\*.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="Shared\IconsList.razor.scss" />
+    <Watch Remove="Shared\MiniPost.razor.scss" />
+    <Watch Remove="Shared\MiniPostFeed.razor.scss" />
+    <Watch Remove="Shared\PageBlurb.razor.scss" />
+  </ItemGroup>
+
+ <Target Name="ToolRestore" BeforeTargets="PreBuildEvent">
+    <Exec Command="dotnet tool update excubo.webcompiler" StandardOutputImportance="high" />
+  </Target>
+
+  <Target Name="PreBuild" AfterTargets="ToolRestore">
+    <Exec Command="dotnet tool run webcompiler -r . -c webcompilerconfiguration.json" StandardOutputImportance="high" />
+  </Target>
 </Project>

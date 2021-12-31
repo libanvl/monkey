@@ -9,7 +9,7 @@
 @import '_imports.scss';
 
 #footer {
-    .icons {
+    ::deep .icons {
         color: _palette(fg-light);
     }
 
@@ -20,9 +20,5 @@
         font-weight: _font(weight-heading);
         letter-spacing: _font(kerning-heading);
         text-transform: uppercase;
-    }
-
-    body.single & {
-        text-align: center;
     }
 }

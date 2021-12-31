@@ -1,0 +1,31 @@
+﻿/* Mini Post */
+/*
+    Future Imperfect by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+.mini-posts {
+  margin: 0 0 2em 0; }
+  @media screen and (max-width: 1280px) {
+    .mini-posts {
+      display: -moz-flex;
+      display: -ms-flex;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      width: calc(100% + 2em); }
+      .mini-posts > * {
+        margin: 2em 2em 0 0;
+        width: calc(50% - 2em); }
+      .mini-posts > :nth-child(-n + 2) {
+        margin-top: 0; } }
+  @media screen and (max-width: 480px) {
+    .mini-posts {
+      display: block;
+      width: 100%; }
+      .mini-posts > * {
+        margin: 0 0 2em 0;
+        width: 100%; } }
+/*# sourceMappingURL=.\Shared\MiniPostFeed.razor.css.map */

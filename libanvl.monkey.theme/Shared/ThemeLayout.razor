@@ -1,20 +1,20 @@
 ﻿@using libanvl.monkey.theme.Model
 @inherits LayoutComponentBase
 
-<CascadingValue Value=@SiteInfo IsFixed>
-    <PageHeader Links=@Links />
-
+<CascadingValue Value=@SiteInfo IsFixed="@true">
     @Body
-
 </CascadingValue>
 
 @code {
-    private SiteInfo SiteInfo = new("Monkey Demo", "Another fine responsive site template by <a href=\"http://html5up.net\">HTML5 UP</a>", null);
-    private PageLink[] Links = new PageLink[] {
-      new("About", "page/about", "lorum ipsum tempus fugit"),
-      new("Awesome", "page/awesome/now", "cui bono"),
-      new("Elements", "elements", "vita brevis"),
-      new("Rates", "/fetchdata", "vini vidi vici"),
-      new("Adipiscing", "", "ad astra per aspera"),
-    };
+    private static SiteInfo SiteInfo = new(
+        "Monkey Demo",
+        (MarkupString)"Another fine responsive site template by <a href=\"http://html5up.net\">HTML5 UP</a>",
+        null,
+        new PageLink[] {
+          new("About", "page/about", "lorum ipsum tempus fugit"),
+          new("Awesome", "page/awesome/now", "cui bono"),
+          new("Elements", "elements", "vita brevis"),
+          new("Rates", "/fetchdata", "vini vidi vici"),
+          new("Adipiscing", "", "ad astra per aspera")
+        });
 }

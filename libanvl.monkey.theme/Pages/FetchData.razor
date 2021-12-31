@@ -3,37 +3,38 @@
 
 <PageTitle>GitHub API Rate Limits</PageTitle>
 
-<h1>Rate Limits</h1>
-
 @if (limits == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Resource</th>
-                <th>Limit</th>
-                <th>Used</th>
-                <th>Remaining</th>
-                <th>Reset</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var limit in limits)
-            {
+    <Post Title="Rate Limits">
+
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@limit.Resource</td>
-                    <td>@limit.Limit</td>
-                    <td>@limit.Used</td>
-                    <td>@limit.Remaining</td>
-                    <td>@limit.Reset</td>
+                    <th>Resource</th>
+                    <th>Limit</th>
+                    <th>Used</th>
+                    <th>Remaining</th>
+                    <th>Reset</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var limit in limits)
+                {
+                    <tr>
+                        <td>@limit.Resource</td>
+                        <td>@limit.Limit</td>
+                        <td>@limit.Used</td>
+                        <td>@limit.Remaining</td>
+                        <td>@limit.Reset</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </Post>
 }
 
 @code {

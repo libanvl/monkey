@@ -85,7 +85,7 @@
         @include vendor('display', 'flex');
         @include vendor('align-items', 'center');
 
-        .actions {
+        ::deep .actions {
             @include vendor('flex-grow', '1');
         }
 

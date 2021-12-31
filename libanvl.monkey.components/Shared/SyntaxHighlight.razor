@@ -1,0 +1,8 @@
+﻿<link rel="stylesheet" href="@CodeTheme">
+
+<div @ref="markupContainer" class="@ContainerClass" id="@ContainerId">
+    @if (ChildContent is not null)
+    {
+        @ChildContent
+    }
+</div>

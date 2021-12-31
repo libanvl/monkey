@@ -1,4 +1,4 @@
-/* Main */
+﻿/* Main */
 /*
     Future Imperfect by HTML5 UP
     html5up.net | @ajlkn
@@ -6,9 +6,10 @@
 */
 #main {
   -moz-flex-grow: 1;
-  -webkit-flex-grow: 1;
   -ms-flex-grow: 1;
-  flex-grow: 1;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   -ms-flex: 1;
-  width: 100%;
-}
+  width: 100%; }
+/*# sourceMappingURL=.\Shared\PageContent.razor.css.map */
