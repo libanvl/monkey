@@ -26,7 +26,7 @@
     <Watch Remove="Shared\PageBlurb.razor.scss" />
   </ItemGroup>
 
- <Target Name="ToolRestore" BeforeTargets="PreBuildEvent">
+ <Target Name="ToolRestore" BeforeTargets="PreBuildEvent" Condition="'$(SkipToolUpdate)' != 'true'">
     <Exec Command="dotnet tool update excubo.webcompiler" StandardOutputImportance="high" />
   </Target>
 
