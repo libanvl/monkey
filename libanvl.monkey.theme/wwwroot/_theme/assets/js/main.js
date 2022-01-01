@@ -4,30 +4,6 @@
     Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-(function($) {
-
-    var	$window = $(window),
-        $body = $('body'),
-        $sidebar = $('#sidebar'),
-        $main = $('#main');
-
-    // Play initial animations on page load.
-        $window.on('load', function() {
-            window.setTimeout(function() {
-                $body.removeClass('is-preload');
-            }, 100);
-        });
-
-    // Intro.
-        var $intro = $('#intro');
-
-        // Move to main on <=large, back to sidebar on >large.
-            breakpoints.on('<=large', function() {
-                $intro.prependTo($main);
-            });
-
-            breakpoints.on('>large', function() {
-                $intro.prependTo($sidebar);
-            });
-
-})(jQuery);
+window.setTimeout(() => {
+    document.querySelector('body').classList.remove('is-preload');
+}, 200);
