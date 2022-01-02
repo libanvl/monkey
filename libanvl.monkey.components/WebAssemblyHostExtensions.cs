@@ -9,8 +9,15 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace libanvl.monkey.components;
 
+/// <summary>
+/// Helper extensions for the <see cref="WebAssemblyHostBuilder"/>.
+/// </summary>
 public static class WebAssemblyHostExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="builder"></param>
     public static void AddThemedSiteFactory(this WebAssemblyHostBuilder builder)
     {
         var themeBase = builder.Configuration.GetRequiredSection("Monkey")["Theme"];
@@ -26,6 +33,10 @@ public static class WebAssemblyHostExtensions
         builder.Services.AddScoped(sp => siteFactory.Initialize(sp));
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="builder"></param>
     public static void AddRoutedMarkdown(this WebAssemblyHostBuilder builder)
     {
         var sourceBaseUri = builder.Configuration.GetRequiredSection("Monkey")["SourceBaseUri"];
@@ -53,6 +64,10 @@ public static class WebAssemblyHostExtensions
 
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="services"></param>
     public static void AddGitHubApiClient(this IServiceCollection services)
     {
         services.AddHttpClient<SourceApiHttpClient>(client => client.BaseAddress = new Uri("https://api.github.com/"));
