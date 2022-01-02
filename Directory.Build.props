@@ -8,7 +8,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>10</LangVersion>
   </PropertyGroup>
-
   <Choose>
     <When Condition=" '$(Configuration)' == 'Debug' ">
       <PropertyGroup>
@@ -30,7 +29,6 @@
       </ItemGroup>
     </When>
   </Choose>
-
   <PropertyGroup Label="Package">
     <Authors>libanvl</Authors>
     <Product>libanvl.monkey</Product>
@@ -39,11 +37,17 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
-
   <ItemGroup>
     <None Include="..\README.md">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>
+      </PackagePath>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
+      <Version>3.4.244</Version>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>
