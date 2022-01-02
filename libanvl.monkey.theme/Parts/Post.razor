@@ -1,19 +1,38 @@
-﻿@using libanvl.monkey.theme.Model
+﻿@using libanvl.monkey.components.Model
+@using libanvl.monkey.theme.Model
+
 <article class="post">
     <header>
-        <div class="title">
-            <h2><a href="@TitleHref">@Title</a></h2>
-            <p>@SubTitle</p>
-        </div>
-        <div class="meta">
-            <time class="published" datetime="2015-11-01">November 1, 2015</time>
-            <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-        </div>
+        @if (Meta is not null)
+        {
+            <div class="title">
+                <h2><a href="@TitleHref">@Meta.Title</a></h2>
+                <p>@Meta.SubTitle</p>
+            </div>
+
+            @if (Meta is PostMatter PostMeta)
+            {
+                <div class="meta">
+                    <time class="published" datetime="@PostMeta.Date.ToString("O")">@PostMeta.Date.ToLongDateString()</time>
+
+                    @if (PostMeta.Author is not null)
+                    {
+                        <AuthorTemplate Author="@PostMeta.Author" Context="author">
+                            <span class="name">@author.Name</span>
+                            @if (author.AvatarUrl is not null)
+                            {
+                                <img src="@author.AvatarUrl" alt="Author Avatar" />
+                            }
+                        </AuthorTemplate>
+                    }
+                </div>
+            }
+        }
     </header>
 
-    @if (FeaturedImage is not null)
+    @if (Meta?.FeaturedImage is not null)
     {
-        <a href="single.html" class="image featured"><img src="@FeaturedImage" alt="" /></a>
+        <a href="#" class="image featured"><img src="@Meta.FeaturedImage.Src" alt="@Meta.FeaturedImage.Alt" /></a>
     }
 
     @ChildContent
@@ -21,23 +40,25 @@
     <footer>
         @if (EnableActions)
         {
-          <Actions Children="@(new[] { new LargeButtonAction("Continue Reading", TitleHref ?? string.Empty) })"/>
+            <Actions Children="@(new[] { new LargeButtonAction("Continue Reading", TitleHref ?? string.Empty) })" />
         }
 
         <ul class="stats">
-            <li><a href="#">General</a></li>
-            <li><a href="#" class="icon solid fa-heart">28</a></li>
-            <li><a href="#" class="icon solid fa-comment">128</a></li>
+            @foreach (var tag in Meta?.Tags ?? Enumerable.Empty<string>())
+            {
+                <li><a href="#">@tag</a></li>
+            }
+            @*
+                <li><a href="#" class="icon solid fa-heart">28</a></li>
+                <li><a href="#" class="icon solid fa-comment">128</a></li>
+            *@
         </ul>
     </footer>
 </article>
 
 @code {
-    [Parameter] public string Title { get; set; } = "Mauris neque quam";
 
-    [Parameter] public string SubTitle { get; set; } = "Lorem ipsum dolor amet nullam consequat etiam feugiat";
-
-    [Parameter] public string? FeaturedImage { get; set; }
+    [Parameter] public PageMatter? Meta { get; set; }
 
     [Parameter] public string? TitleHref { get; set; }
 

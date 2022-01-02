@@ -8,7 +8,7 @@
     </a>
     <header>
         <h2>@SiteInfo.Title</h2>
-        <p>@SiteInfo.Description</p>
+        <p>@(new MarkupString(SiteInfo.Description))</p>
     </header>
 </section>
 

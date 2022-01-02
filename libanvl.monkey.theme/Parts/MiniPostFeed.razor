@@ -1,11 +1,17 @@
-﻿<div class="mini-posts">
+﻿@using libanvl.monkey.components.Model
+@if (Items is not null)
+{
+    <div class="mini-posts">
+        @foreach (var post in Items)
+        {
+            @if (post.Published)
+            {
+                <MiniPost Meta="@post" TitleRef="post/" />
+            }
+        }
+    </div>
+}
 
-    <MiniPost />
-    <MiniPost />
-    <MiniPost />
-    <MiniPost />
-
-</div>
 @code {
-
+    [Parameter] public IReadOnlyList<PostMatter>? Items { get; set; }
 }

@@ -1,17 +1,41 @@
+@using libanvl.monkey.components.Model
 @using libanvl.monkey.theme.Model
 <!-- Sidebar -->
 <section id="sidebar">
 
-  <PageIntro/>
+    <PageIntro />
 
     <!-- Mini Posts -->
-  <section>
-    <MiniPostFeed />
-  </section>
+    <section>
+        <MiniPostFeed Items="@_samplePosts"/>
+    </section>
 
     <!-- About -->
     <PageBlurb />
 
     <PageFooter />
-
 </section>
+
+@code {
+    private List<PostMatter> _samplePosts = new()
+        {
+            new PostMatter
+            {
+                Title = "First Post",
+                SubTitle = "This is about something",
+                Date = new DateOnly(2021, 1, 2),
+                Published = true,
+                Tags = new[] { "Post", "Something" },
+                Author = new AuthorInfo { Name = "Curious George" }
+            },
+            new PostMatter
+            {
+                Title = "Second Post",
+                SubTitle = "This is probably something",
+                Date = new DateOnly(2021, 1, 3),
+                Published = true,
+                Tags = new[] { "Post", "Something", "Whatever" },
+                Author = new AuthorInfo { Name = "Curious George" }
+            },
+        };
+}

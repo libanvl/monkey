@@ -1,38 +1,40 @@
-﻿@page "/page/{*pageRoute}"
-@layout SingleLayout
-@inject NavigationManager NavigationManager
+﻿@inject NavigationManager NavigationManager
 @inject SourceContentHttpClient ContentClient
 @inject MarkdownParser Markdown
 
-@if (ready)
+@if (PageRoute is not null)
 {
-    @if (PageRoute is not null)
+    @if (ready)
     {
-        @if (meta is not null)
+        @if (published && Found is not null)
         {
-            <PageTitle>@meta.Title</PageTitle>
+            @Found(new MarkdownTemplateContext(meta ?? new PageMatter(), content));
         }
-
-        <Post Title="@meta?.Title" SubTitle="@meta?.SubTitle" EnableActions="@false">
-            <SyntaxHighlight AdditionalLanguages="@(new[] {"go", "rust"})" CodeTheme="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/monokai.min.css">
-                @content
-            </SyntaxHighlight>
-        </Post>
+        else
+        {
+            @NotFound
+        }
+    }
+    else
+    {
+        @Loading
     }
 }
-else
-{
-    <p><em>Loading...</em></p>
-}
-
 
 @code {
     private PageMatter? meta;
     private MarkupString content;
     private bool ready = false;
+    private bool published = false;
 
     [Parameter]
     public string? PageRoute { get; set; }
+
+    [Parameter] public RenderFragment<MarkdownTemplateContext>? Found { get; set; }
+
+    [Parameter] public RenderFragment? NotFound { get; set; }
+
+    [Parameter] public RenderFragment? Loading { get; set; }
 
     protected override async Task OnParametersSetAsync()
     {
@@ -50,6 +52,7 @@ else
         {
             var source = await ContentClient.GetMarkdownPageAsync(PageRoute);
             (meta, content) = await Markdown.ParseAsync<PageMatter>(source);
+            published = meta.Published;
             ready = true;
         }
         catch

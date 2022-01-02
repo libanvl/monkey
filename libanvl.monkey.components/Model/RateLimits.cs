@@ -1,4 +1,4 @@
-﻿namespace libanvl.monkey;
+﻿namespace libanvl.monkey.components.Model;
 
 public record struct RateLimits(Resources Resources, Rate Rate);
 

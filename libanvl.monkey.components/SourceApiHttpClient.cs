@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.WebAssembly.Http;
+﻿using libanvl.monkey.components.Model;
+using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using System.Net.Http.Json;
 
 namespace libanvl.monkey.components;

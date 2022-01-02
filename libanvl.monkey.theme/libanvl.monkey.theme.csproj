@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <Description>Core libraries for Monkey</Description>
+    <Description>FutureImperfect theme package for Monkey</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,11 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="themesettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="themesettings.json" />
+    <Watch Remove="Parts\AuthorTemplate.razor.scss" />
   </ItemGroup>
 
  <Target Name="ToolRestore" BeforeTargets="PreBuildEvent" Condition="'$(SkipWebCompiler)' != 'true'">

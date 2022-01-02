@@ -1,0 +1,14 @@
+﻿@using libanvl.monkey.components.Model
+
+@if (Author is not null && ChildContent is not null)
+{
+    <a href="#" class="author">
+        @ChildContent(@Author)
+    </a>
+}
+
+@code {
+    [Parameter] public RenderFragment<AuthorInfo>? ChildContent { get; set; }
+
+    [Parameter] public AuthorInfo? Author { get; set; }
+}

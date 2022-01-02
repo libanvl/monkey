@@ -1,11 +1,31 @@
-﻿<article class="mini-post">
-    <header>
-        <h3><a href="single.html">Vitae sed condimentum</a></h3>
-        <time class="published" datetime="2015-10-20">October 20, 2015</time>
-        <a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
-    </header>
-    <a href="single.html" class="image"><img src="images/pic04.jpg" alt="" /></a>
-</article>
-@code {
+﻿@using libanvl.monkey.components.Model
+<article class="mini-post">
+    @if (Meta is not null)
+    {
+        <header>
+            <h3><a href="@TitleRef">@Meta.Title</a></h3>
+            <time class="published" datetime="@Meta.Date.ToString("O")">@Meta.Date.ToLongDateString()</time>
 
+            @if (Meta.Author is not null)
+            {
+                <AuthorTemplate Author="@Meta.Author" Context="author">
+                    @if (author.AvatarUrl is not null)
+                    {
+                      <img src="@author.AvatarUrl" alt="Author Avator" />
+                    }
+                </AuthorTemplate>
+            }
+        </header>
+
+        @if (Meta?.FeaturedImage is not null)
+        {
+            <a href="@TitleRef" class="image"><img src="@Meta.FeaturedImage.Src" alt="@Meta.FeaturedImage.Alt" /></a>
+        }
+    }
+</article>
+
+@code {
+    [Parameter] public PostMatter? Meta { get; set; }
+
+    [Parameter] public string TitleRef { get; set; } = "#";
 }
