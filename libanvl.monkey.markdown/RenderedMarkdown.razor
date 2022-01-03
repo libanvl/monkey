@@ -1,0 +1,39 @@
+﻿@typeparam TMeta where TMeta : new()
+@using libanvl.monkey.Services
+@inject MarkdownParser Parser
+@inject NavigationManager Navigation
+
+@if (ChildContent is not null && _context is not null)
+{
+    @ChildContent(_context)
+}
+
+@code {
+    private RenderedMarkdownContext<TMeta>? _context;
+
+    [Parameter] 
+    public RenderFragment<RenderedMarkdownContext<TMeta>>? ChildContent { get; set; }
+
+    [Parameter] 
+    public string? Markdown { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Markdown is null)
+        {
+            return;
+        }
+
+        try
+        {
+            var (meta, content) = await Parser.ParseAsync<TMeta>(Markdown);
+            _context = new(meta, content);
+        }
+        catch
+        {
+            Navigation.NavigateTo("500");
+        }
+    }
+
+    public record RenderedMarkdownContext<T>(T Meta, MarkupString Markup) where T: new();
+}

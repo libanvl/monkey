@@ -14,6 +14,7 @@ public class SiteFactory : IThemedSiteFactory
     /// <inheritdoc />
     public Type NotFoundLayoutType => typeof(SingleLayout);
 
+    /// <inheritdoc />
     public string FocusOnNavigateSelector => ".title";
 
     /// <inheritdoc />

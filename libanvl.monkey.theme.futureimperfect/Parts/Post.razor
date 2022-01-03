@@ -1,7 +1,4 @@
-﻿@using libanvl.monkey.components.Model
-@using libanvl.monkey.theme.Model
-
-<article class="post">
+﻿<article class="post">
     <header>
         @if (Meta is not null)
         {
@@ -10,7 +7,7 @@
                 <p>@Meta.SubTitle</p>
             </div>
 
-            @if (Meta is PostMatter PostMeta)
+            @if (Meta is PostMeta PostMeta)
             {
                 <div class="meta">
                     <time class="published" datetime="@PostMeta.Date.ToString("O")">@PostMeta.Date.ToLongDateString()</time>
@@ -58,7 +55,7 @@
 
 @code {
 
-    [Parameter] public PageMatter? Meta { get; set; }
+    [Parameter] public PageMeta? Meta { get; set; }
 
     [Parameter] public string? TitleHref { get; set; }
 

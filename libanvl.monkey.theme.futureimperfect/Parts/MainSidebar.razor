@@ -1,5 +1,3 @@
-@using libanvl.monkey.components.Model
-@using libanvl.monkey.theme.Model
 <!-- Sidebar -->
 <section id="sidebar">
 
@@ -17,22 +15,22 @@
 </section>
 
 @code {
-    private List<PostMatter> _samplePosts = new()
+    private List<PostMeta> _samplePosts = new()
         {
-            new PostMatter
+            new PostMeta
             {
                 Title = "First Post",
                 SubTitle = "This is about something",
-                Date = new DateOnly(2021, 1, 2),
+                Date = new DateOnly(2021, 1, 2).ToDateTime(TimeOnly.MinValue),
                 Published = true,
                 Tags = new[] { "Post", "Something" },
                 Author = new AuthorInfo { Name = "Curious George" }
             },
-            new PostMatter
+            new PostMeta
             {
                 Title = "Second Post",
                 SubTitle = "This is probably something",
-                Date = new DateOnly(2021, 1, 3),
+                Date = new DateOnly(2021, 1, 3).ToDateTime(TimeOnly.MinValue),
                 Published = true,
                 Tags = new[] { "Post", "Something", "Whatever" },
                 Author = new AuthorInfo { Name = "Curious George" }

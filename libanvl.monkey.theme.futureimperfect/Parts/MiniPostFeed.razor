@@ -1,5 +1,4 @@
-﻿@using libanvl.monkey.components.Model
-@if (Items is not null)
+﻿@if (Items is not null)
 {
     <div class="mini-posts">
         @foreach (var post in Items)
@@ -13,5 +12,5 @@
 }
 
 @code {
-    [Parameter] public IReadOnlyList<PostMatter>? Items { get; set; }
+    [Parameter] public IReadOnlyList<PostMeta>? Items { get; set; }
 }

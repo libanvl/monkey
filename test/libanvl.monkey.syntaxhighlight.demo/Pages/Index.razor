@@ -1,0 +1,20 @@
+﻿@page "/"
+@using libanvl.monkey.syntaxhighlight
+<PageTitle>Syntax Highlight Demo</PageTitle>
+
+<SyntaxHighlight ContainerClass="demo" ContainerId="demo-id">
+  <pre>
+    <code>
+      public class DemoClass
+      {
+        public string DemoProperty {get; set;}
+
+        public void DemoMethod(int demoArg)
+        {
+          Console.Writeline(demoArg);
+        }
+      }
+    </code>
+  </pre>
+</SyntaxHighlight>
+

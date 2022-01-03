@@ -1,5 +1,4 @@
-﻿@using libanvl.monkey.components.Model
-<article class="mini-post">
+﻿<article class="mini-post">
     @if (Meta is not null)
     {
         <header>
@@ -25,7 +24,7 @@
 </article>
 
 @code {
-    [Parameter] public PostMatter? Meta { get; set; }
+    [Parameter] public PostMeta? Meta { get; set; }
 
     [Parameter] public string TitleRef { get; set; } = "#";
 }

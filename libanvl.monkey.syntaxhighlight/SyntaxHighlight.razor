@@ -1,0 +1,11 @@
+﻿<div @ref="markupContainer" class="@ContainerClass" id="@ContainerId">
+    @if (CodeThemeHref is not null)
+    {
+        <link rel="stylesheet" href="@CodeThemeHref">
+    }
+
+    @if (ChildContent is not null)
+    {
+        @ChildContent
+    }
+</div>
