@@ -1,8 +1,6 @@
 ﻿using libanvl.monkey.core.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace libanvl.monkey;
 
@@ -15,20 +13,10 @@ public static class WebAssemblyHostBuilderExtensions
     /// Adds the services to bind to a Monkey Theme Package.
     /// </summary>
     /// <param name="builder"></param>
-    public static void AddThemedSiteBuilder(this WebAssemblyHostBuilder builder)
+    /// <param name="site">the theme site factory instance</param>
+    public static void AddThemedSiteBuilder(this WebAssemblyHostBuilder builder, IThemedSiteBuilder site)
     {
-        var themeBase = builder.Configuration.GetRequiredSection("Monkey")["Theme"];
-        ArgumentNullException.ThrowIfNull(themeBase);
-
-        var themeAssembly = Assembly.Load(themeBase);
-        ArgumentNullException.ThrowIfNull(themeAssembly);
-
-        var siteFactoryType = themeAssembly.GetImplementers<IThemedSiteFactory>().Single();
-        IThemedSiteFactory? siteFactory = Activator.CreateInstance(siteFactoryType) as IThemedSiteFactory;
-        ArgumentNullException.ThrowIfNull(siteFactory);
-
-        builder.Services.AddScoped(sp => siteFactory.Initialize(sp));
-
+        builder.Services.AddScoped(sp => site.Initialize(sp));
         builder.Services.AddScoped<MonkeyInterop>();
     }
 }

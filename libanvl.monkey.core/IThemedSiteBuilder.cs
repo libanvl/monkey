@@ -5,12 +5,12 @@ namespace libanvl.monkey;
 /// <summary>
 /// Monkey Themes must implement this interface to be included in the main site.
 /// </summary>
-public interface IThemedSiteFactory
+public interface IThemedSiteBuilder
 {
     /// <summary>
     /// Initializes the theme.
     /// </summary>
-    IThemedSiteFactory Initialize(IServiceProvider serviceProvider);
+    IThemedSiteBuilder Initialize(IServiceProvider serviceProvider);
 
     /// <summary>
     /// Gets the theme assemblies.

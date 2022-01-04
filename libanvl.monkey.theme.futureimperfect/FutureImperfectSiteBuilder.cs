@@ -1,12 +1,12 @@
 ﻿using libanvl.monkey.theme.futureimperfect.Shared;
 using System.Reflection;
 
-namespace libanvl.monkey.theme;
+namespace libanvl.monkey.theme.futureimperfect;
 
 /// <summary>
 /// Themed site factory for Future Imperfect
 /// </summary>
-public class SiteFactory : IThemedSiteFactory
+public class FutureImperfectSiteBuilder : IThemedSiteBuilder
 {
     /// <inheritdoc />
     public Type FoundDefaultLayoutType => typeof(MainLayout);
@@ -18,7 +18,7 @@ public class SiteFactory : IThemedSiteFactory
     public string FocusOnNavigateSelector => ".title";
 
     /// <inheritdoc />
-    public IThemedSiteFactory Initialize(IServiceProvider services)
+    public IThemedSiteBuilder Initialize(IServiceProvider services)
     {
         return this;
     }
@@ -26,6 +26,6 @@ public class SiteFactory : IThemedSiteFactory
     /// <inheritdoc />
     public IEnumerable<Assembly> GetAssemblies()
     {
-        yield return typeof(SiteFactory).Assembly;
+        yield return typeof(FutureImperfectSiteBuilder).Assembly;
     }
 }
