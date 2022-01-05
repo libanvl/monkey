@@ -1,4 +1,4 @@
-﻿@using libanvl.monkey.theme.Model
+﻿@implements IMonkeyActionsBlock
 
 <ul class="actions @(Stacked ? "stacked" : null) @(Fit ? "fit" : null) @(Special ? "special" : null) @(Pagination ? "pagination" : null)">
     @foreach (ActionInfo child in Children)

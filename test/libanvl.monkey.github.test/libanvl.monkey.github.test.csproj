@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\libanvl.monkey.github\libanvl.monkey.github.csproj" />
+    <ProjectReference Include="..\..\libanvl.monkey.metal\libanvl.monkey.metal.csproj" />
   </ItemGroup>
 
 </Project>

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\libanvl.monkey.core\libanvl.monkey.core.csproj" />
+    <ProjectReference Include="..\libanvl.monkey.theme.parts\libanvl.monkey.theme.parts.csproj" />
   </ItemGroup>
 
  <Target Name="ToolRestore" BeforeTargets="PreBuildEvent" Condition="'$(SkipWebCompiler)' != 'true'">

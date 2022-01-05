@@ -1,0 +1,16 @@
+<section id="intro">
+    <a href="#" class="logo">
+        @if (SiteInfo.Logo is not null)
+        {
+            <img src="@SiteInfo.Logo.Value.Src" alt="@SiteInfo.Logo.Value.Alt" />
+        }
+    </a>
+    <header>
+        <h2>@SiteInfo.Title</h2>
+        <p>@(new MarkupString(SiteInfo.Description))</p>
+    </header>
+</section>
+
+@code {
+    [CascadingParameter] public SiteInfo SiteInfo { get; set; }
+}

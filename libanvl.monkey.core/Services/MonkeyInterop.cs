@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-namespace libanvl.monkey.core.Services;
+namespace libanvl.monkey.Services;
 
 /// <summary>
 /// Wrapper around the Monkey JS module.

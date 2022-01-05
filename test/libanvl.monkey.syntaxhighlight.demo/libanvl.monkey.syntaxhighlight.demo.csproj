@@ -6,7 +6,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\libanvl.monkey.syntaxhighlight\libanvl.monkey.syntaxhighlight.csproj" />
+    <ProjectReference Include="..\..\libanvl.monkey.metal\libanvl.monkey.metal.csproj" />
   </ItemGroup>
 
 </Project>

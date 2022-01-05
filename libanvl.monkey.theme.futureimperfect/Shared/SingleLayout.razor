@@ -1,8 +1,7 @@
 ﻿@inherits LayoutComponentBase
-@layout ThemeLayout
+@implements IMonkeyLayout
 
-@using libanvl.monkey.theme.Model
-
+<CascadingValue Value="@SiteInfo" IsFixed="@true">
 <PageWrapper IsSingle="@true">
     <PageContent>
         @Body
@@ -10,7 +9,8 @@
 
     <PageFooter />
 </PageWrapper>
+</CascadingValue>
 
 @code {
-    [CascadingParameter] public SiteInfo SiteInfo { get; set; }
+    [Parameter] public SiteInfo SiteInfo { get; set; }
 }
