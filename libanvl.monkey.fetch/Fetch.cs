@@ -12,10 +12,10 @@ public class Fetch : ComponentBase
     private bool _fetched = false;
 
     [Inject]
-    private IHttpClientFactory? ClientFactory { get; set; }
+    private IHttpClientFactory ClientFactory { get; set; } = default!;
 
     [Inject]
-    private NavigationManager? NavigationManager { get; set; }
+    private NavigationManager NavigationManager { get; set; } = default!;
 
     /// <summary>
     /// The name of the <see cref="HttpClient"/> to use.
@@ -33,7 +33,7 @@ public class Fetch : ComponentBase
     /// The fragment to render if the content is fetched.
     /// </summary>
     [Parameter]
-    public RenderFragment<string>? Found { get; set; }
+    public RenderFragment<string> Found { get; set; } = default!;
 
     /// <summary>
     /// The fragment to render if the content is not fetched. If <c>null</c>
@@ -48,24 +48,61 @@ public class Fetch : ComponentBase
     [Parameter] 
     public RenderFragment? Loading { get; set; }
 
+    /// <summary>
+    /// Fires when fetch status changes.
+    /// </summary>
+    /// <remarks>
+    /// - loading
+    /// - fetched
+    /// - failed
+    /// </remarks>
+    [Parameter]
+    public EventCallback<string> OnStatusChanged { get; set; }
 
     /// <inheritdoc />
-    protected override async Task OnParametersSetAsync()
+    public override async Task SetParametersAsync(ParameterView parameters)
     {
-        ArgumentNullException.ThrowIfNull(ClientFactory);
-        ArgumentNullException.ThrowIfNull(ClientName);
+        foreach (var param in parameters)
+        {
+            switch (param.Name)
+            {
+                case nameof(ClientName):
+                    ClientName = (string?)param.Value;
+                    break;
+                case nameof(Path):
+                    Path = (string?)param.Value;
+                    break;
+                case nameof(Found):
+                    Found = (RenderFragment<string>)param.Value;
+                    break;
+                case nameof(NotFound):
+                    NotFound = (RenderFragment?)param.Value;
+                    break;
+                case nameof(Loading):
+                    Loading = (RenderFragment?)param.Value;
+                    break;
+                case nameof(OnStatusChanged):
+                    OnStatusChanged = (EventCallback<string>)param.Value;
+                    break;
+            }
+        }
 
         try
         {
-            var client = ClientFactory.CreateClient(ClientName);
+            await OnStatusChanged.InvokeAsync("loading");
+            var client = ClientFactory.CreateClient(ClientName!);
             _result = await client.GetStringAsync(Path);
             _fetched = true;
+            await OnStatusChanged.InvokeAsync("fetched");
         }
         catch
         {
             _result = null;
             _fetched = true;
+            await OnStatusChanged.InvokeAsync("failed");
         }
+
+        await base.SetParametersAsync(ParameterView.Empty);
     }
 
     /// <inheritdoc />
