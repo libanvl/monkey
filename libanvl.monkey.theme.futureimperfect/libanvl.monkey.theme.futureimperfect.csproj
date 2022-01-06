@@ -19,12 +19,4 @@
   <ItemGroup>
     <ProjectReference Include="..\libanvl.monkey.theme.parts\libanvl.monkey.theme.parts.csproj" />
   </ItemGroup>
-
- <Target Name="ToolRestore" BeforeTargets="PreBuildEvent" Condition="'$(SkipWebCompiler)' != 'true'">
-    <Exec Command="dotnet tool update excubo.webcompiler" StandardOutputImportance="high" />
-  </Target>
-
-  <Target Name="PreBuild" AfterTargets="ToolRestore" Condition="'$(SkipWebCompiler)' != 'true'">
-    <Exec Command="dotnet tool run webcompiler -- -r $(MSBuildThisFileDirectory) -c webcompilerconfiguration.json" StandardOutputImportance="high" />
-  </Target>
 </Project>

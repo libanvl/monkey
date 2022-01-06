@@ -60,6 +60,10 @@ jobs:
         id: nbgv
       - name: Restore
         run: dotnet restore
+      - name: Install WebCompiler
+        run: dotnet tool update excubo.webcompiler
+      - name: Run WebCompiler for theme project
+        run: dotnet tool run webcompiler -- -r ./libanvl.monkey.theme.futureimperfect/ -c ./libanvl.monkey.theme.futureimperfect/webcompilerconfiguration.json
       - name: Build
         run: dotnet build --configuration ${{ inputs.configuration }} --no-restore --verbosity ${{ inputs.dotnet-verbosity }} -p:ContinuousIntegrationBuild=true
       - name: Test
