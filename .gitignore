@@ -4,8 +4,6 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 !libanvl.monkey.meta/
-libanvl.monkey.theme.*/**/*.css
-!libanvl.monkey.theme.*/**/css/*.css
 
 # User-specific files
 *.rsuser

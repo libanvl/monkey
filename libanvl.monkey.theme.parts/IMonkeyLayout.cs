@@ -3,11 +3,18 @@ using Microsoft.AspNetCore.Components;
 
 namespace libanvl.monkey.theme.parts;
 
+/// <summary>
+/// A Monkey Templated Layout
+/// </summary>
 public interface IMonkeyLayout
 {
-    [Parameter]
-    RenderFragment? Body { get; set; }
+    /// <summary>
+    /// The layout child component.
+    /// </summary>
+    [Parameter] RenderFragment? Body { get; set; }
 
-    [Parameter]
-    SiteInfo SiteInfo { get; set; }
+    /// <summary>
+    /// The site info for the running site.
+    /// </summary>
+    [Parameter] SiteInfo SiteInfo { get; set; }
 }

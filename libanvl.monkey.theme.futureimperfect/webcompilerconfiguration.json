@@ -1,7 +1,7 @@
 {
   "Minifiers": {
     "GZip": false,
-    "Enabled": true,
+    "Enabled": false,
     "Css": {
       "CommentMode": "Important",
       "ColorNames": "Hex",
@@ -10,16 +10,16 @@
       "IndentSize": 2
     },
     "Javascript": {
-      "RenameLocals": true,
+      "RenameLocals": false,
       "PreserveImportantComments": true,
       "EvalTreatment": "Ignore",
-      "TermSemicolons": true,
+      "TermSemicolons": false,
       "OutputMode": "SingleLine",
       "IndentSize": 2
     }
   },
   "Autoprefix": {
-    "Enabled": true,
+    "Enabled": false,
     "ProcessingOptions": {
       "Browsers": [
         "last 4 versions"
@@ -50,6 +50,6 @@
     }
   },
   "Output": {
-    "Preserve": true
+    "Preserve": false
   }
 }

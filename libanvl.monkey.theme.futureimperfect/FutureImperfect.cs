@@ -12,6 +12,12 @@ public class FutureImperfect : IThemedSiteBuilder
     public string FocusOnNavigateSelector => ".title h2";
 
     /// <inheritdoc />
+    public IEnumerable<string> StylesheetHrefs { get; } = new List<string>
+    {
+        "_content/libanvl.monkey.theme.futureimperfect/_theme/main.css"
+    };
+
+    /// <inheritdoc />
     public IThemedSiteBuilder Initialize(IServiceProvider services)
     {
         return this;
@@ -23,6 +29,7 @@ public class FutureImperfect : IThemedSiteBuilder
         yield return typeof(FutureImperfect).Assembly;
     }
 
+    /// <inheritdoc />
     public Type? GetPartType(string partKey)
     {
         return partKey switch

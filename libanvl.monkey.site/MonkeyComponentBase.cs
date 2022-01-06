@@ -3,8 +3,17 @@ using Microsoft.AspNetCore.Components;
 
 namespace libanvl.monkey.site;
 
+/// <summary>
+/// Base class for Monkey Themed Component proxies
+/// </summary>
 public abstract class MonkeyComponentBase : IComponent
 {
+    /// <summary>
+    /// Initializes an instance of <see cref="MonkeyComponentBase"/>.
+    /// </summary>
+    /// <param name="siteBuilder"></param>
+    /// <param name="partKey"></param>
+    /// <exception cref="InvalidOperationException"></exception>
     protected MonkeyComponentBase(IThemedSiteBuilder siteBuilder, string partKey)
     {
         var templateType = siteBuilder.GetPartType(partKey);
@@ -23,13 +32,19 @@ public abstract class MonkeyComponentBase : IComponent
             throw new InvalidOperationException($"The template part could not be initialized {partKey}");
         }
     }
+
+    /// <summary>
+    /// The activated component from the template.
+    /// </summary>
     protected virtual IComponent TemplateComponent { get; }
 
+    /// <inheritdoc />
     public virtual void Attach(RenderHandle renderHandle)
     {
         TemplateComponent.Attach(renderHandle);
     }
 
+    /// <inheritdoc />
     public virtual Task SetParametersAsync(ParameterView parameters)
     {
 #if DEBUG

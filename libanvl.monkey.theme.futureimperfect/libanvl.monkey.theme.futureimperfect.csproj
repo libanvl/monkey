@@ -25,6 +25,6 @@
   </Target>
 
   <Target Name="PreBuild" AfterTargets="ToolRestore" Condition="'$(SkipWebCompiler)' != 'true'">
-    <Exec Command="dotnet tool run webcompiler -- -r . -c webcompilerconfiguration.json" StandardOutputImportance="high" />
+    <Exec Command="dotnet tool run webcompiler -- -r $(MSBuildThisFileDirectory) -c webcompilerconfiguration.json" StandardOutputImportance="high" />
   </Target>
 </Project>
