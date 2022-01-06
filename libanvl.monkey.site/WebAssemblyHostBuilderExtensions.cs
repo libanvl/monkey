@@ -19,10 +19,13 @@ public static class WebAssemblyHostBuilderExtensions
     /// <param name="site">the theme site factory instance</param>
     public static void AddThemedSiteBuilder(this WebAssemblyHostBuilder builder, IThemedSiteBuilder site)
     {
+        builder.RootComponents.Add<MonkeyRootComponent>("head::after");
+
         builder.Services.AddScoped(sp => site.Initialize(sp));
         builder.Services.AddScoped<MonkeyInterop>();
         builder.Services.AddScoped<IComponentActivator, MonkeyComponentActivator>();
 
+        builder.Services.AddTransient<MonkeyRootComponent>();
         builder.Services.AddTransient<MonkeyMainLayout>();
         builder.Services.AddTransient<MonkeySingleLayout>();
         builder.Services.AddTransient<MonkeyPage>();

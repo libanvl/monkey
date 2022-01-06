@@ -24,13 +24,22 @@ public interface IThemedSiteBuilder
     string FocusOnNavigateSelector { get; }
 
     /// <summary>
+    /// Gets the hrefs for any root stylesheets.
+    /// </summary>
+    IEnumerable<string> StylesheetHrefs { get; }
+
+    /// <summary>
     /// Gets the type for a given theme part.
     /// </summary>
     Type? GetPartType(string partKey);
 }
 
+/// <summary>
+/// Keys for Common theme parts.
+/// </summary>
 public static class CommonPartKey
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public const string MainLayout = "mainlayout";
     public const string SingleLayout = "singlelayout";
     public const string ActionsBlock = "actionsblock";
@@ -38,4 +47,5 @@ public static class CommonPartKey
     public const string Header = "header";
     public const string Post = "post";
     public const string Page = "page";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }
