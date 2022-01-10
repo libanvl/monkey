@@ -41,11 +41,16 @@ public static class CommonPartKey
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public const string MainLayout = "mainlayout";
+    public const string MainTemplate = "maintemplate";
+    public const string Sidebar = "sidebar";
     public const string SingleLayout = "singlelayout";
     public const string ActionsBlock = "actionsblock";
+    public const string ActionItem = "actionitem";
+    public const string Button = "button";
+    public const string NavButton = "navbutton";
     public const string Footer = "footer";
     public const string Header = "header";
-    public const string Post = "post";
     public const string Page = "page";
+    public const string Post = "post";
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

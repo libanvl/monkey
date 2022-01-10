@@ -1,3 +1,4 @@
+@inject NavigationManager Nav
 <section id="menu" class="@(Visible ? "is-menu-visible" : "")" @onclick="() => VisibilityRequested.InvokeAsync(false)">
 
     <!-- Links -->
@@ -23,9 +24,9 @@
 
     <!-- Actions -->
     <section>
-        <Actions Stacked="@true" Children="@(new[] {
-          new LargeButtonAction("Log In", "", "fit"),
-        })" />
+        <ActionsBlock Stacked="@true" Fit="@true">
+          <ActionItem><Button Kind="@ButtonKind.Anchor" Fit="@true">Log In</Button></ActionItem>
+        </ActionsBlock>
     </section>
 </section>
 

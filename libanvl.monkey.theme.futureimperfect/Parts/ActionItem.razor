@@ -1,0 +1,15 @@
+﻿@implements IMonkeyActionItem
+
+<li>@ChildContent</li>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        ChildContent = parameters.GetValueOrDefault<RenderFragment?>(nameof(ChildContent));
+        return base.SetParametersAsync(ParameterView.Empty);
+    }
+}

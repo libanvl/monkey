@@ -34,10 +34,15 @@ public class FutureImperfect : IThemedSiteBuilder
     {
         return partKey switch
         {
-            CommonPartKey.Page => typeof(Parts.Post),
             CommonPartKey.MainLayout => typeof(MainLayout),
+            CommonPartKey.MainTemplate => typeof(MainTemplate),
             CommonPartKey.SingleLayout => typeof(SingleLayout),
-            CommonPartKey.ActionsBlock => typeof(Parts.Actions),
+            CommonPartKey.Sidebar => typeof(MainSidebar),
+            CommonPartKey.Page => typeof(Parts.Post),
+            CommonPartKey.ActionsBlock => typeof(Parts.ActionsBlock),
+            CommonPartKey.ActionItem => typeof(Parts.ActionItem),
+            CommonPartKey.Button => typeof(Parts.Button),
+            CommonPartKey.NavButton => typeof(Parts.NavButton),
             _ => null
         };
     }

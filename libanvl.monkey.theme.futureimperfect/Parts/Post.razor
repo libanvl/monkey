@@ -39,7 +39,9 @@
     <footer>
         @if (EnableActions)
         {
-            <Actions Children="@(new[] { new LargeButtonAction("Continue Reading", TitleHref ?? string.Empty) })" />
+            <ActionsBlock>
+              <ActionItem><NavButton Kind="@ButtonKind.Anchor" Size="@ButtonSize.Large">Continue Reading</NavButton></ActionItem>
+            </ActionsBlock>
         }
 
         <ul class="stats">

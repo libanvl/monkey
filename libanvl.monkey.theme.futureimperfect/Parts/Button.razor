@@ -1,0 +1,40 @@
+﻿@implements IMonkeyButton
+
+@ButtonFragment
+
+@code {
+    protected RenderFragment? ButtonFragment { get; set; }
+
+    [Parameter]
+    public virtual ButtonKind Kind { get; set; }
+
+    [Parameter]
+    public ButtonSize Size { get; set; }
+
+    [Parameter]
+    public bool Fit { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected string ClassString => $"{(Size != ButtonSize.Default ? Size.ToString().ToLowerInvariant() : null)} {(Fit ? "fit" : null)}";
+
+    protected override void OnInitialized()
+    {
+        ButtonFragment = Kind switch
+        {
+            ButtonKind.Button => MakeButton,
+            _ => null
+        };
+    }
+
+    private RenderFragment MakeButton => __builder =>
+    {
+        <button class="@ClassString" disabled="@Disabled">
+            @ChildContent
+        </button>
+    };
+}

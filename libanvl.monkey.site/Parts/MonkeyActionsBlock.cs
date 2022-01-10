@@ -1,6 +1,6 @@
-﻿using libanvl.monkey.Model;
-using libanvl.monkey.theme;
+﻿using libanvl.monkey.theme;
 using libanvl.monkey.theme.parts;
+using Microsoft.AspNetCore.Components;
 
 namespace libanvl.monkey.site;
 
@@ -30,6 +30,5 @@ public class MonkeyActionsBlock : MonkeyComponentBase, IMonkeyActionsBlock
     /// <inheritdoc />
     public bool Pagination { get; set; }
 
-    /// <inheritdoc />
-    public ActionInfo[] Children { get; set; } = Array.Empty<ActionInfo>();
+    public RenderFragment? ChildContent { get; set; }
 }

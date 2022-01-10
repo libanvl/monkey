@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Watch Remove="Parts\Button.razor.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\libanvl.monkey.theme.parts\libanvl.monkey.theme.parts.csproj" />
   </ItemGroup>
 </Project>

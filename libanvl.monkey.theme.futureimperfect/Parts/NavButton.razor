@@ -1,0 +1,21 @@
+﻿@inherits Button
+@implements IMonkeyNavButton
+
+@ButtonFragment
+
+@code {
+
+    [Parameter] public string? Href { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ButtonFragment = MakeAnchor;
+    }
+
+    private RenderFragment MakeAnchor => __builder =>
+    {
+      <a href="@Href" class="button @base.ClassString @(Disabled ? "disabled" : null)">
+          @ChildContent
+      </a>
+    };
+}

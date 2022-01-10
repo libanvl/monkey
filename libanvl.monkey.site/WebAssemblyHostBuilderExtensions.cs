@@ -28,8 +28,12 @@ public static class WebAssemblyHostBuilderExtensions
         builder.Services.AddTransient<MonkeyRootComponent>();
         builder.Services.AddTransient<MonkeyMainLayout>();
         builder.Services.AddTransient<MonkeySingleLayout>();
+        builder.Services.AddTransient<MonkeyMainTemplate>();
         builder.Services.AddTransient<MonkeyPage>();
         builder.Services.AddTransient<MonkeyActionsBlock>();
+        builder.Services.AddTransient<MonkeyActionItem>();
+        builder.Services.AddTransient<MonkeyButton>();
+        builder.Services.AddTransient<MonkeyNavButton>();
+        builder.Services.AddTransient<MonkeySidebar>();
     }
-
 }

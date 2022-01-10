@@ -1,5 +1,4 @@
-﻿using libanvl.monkey.Model;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 
 namespace libanvl.monkey.theme.parts;
 
@@ -14,6 +13,6 @@ public interface IMonkeyActionsBlock
 
     [Parameter] bool Pagination { get; set; }
 
-    [Parameter] ActionInfo[] Children { get; set; }
+    [Parameter] RenderFragment? ChildContent { get; set; }
 }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member

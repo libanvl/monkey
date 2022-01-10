@@ -1,0 +1,13 @@
+﻿@implements IMonkeyMainTemplate
+
+<PageContent>
+    @Content
+</PageContent>
+
+@Sidebar
+
+@code {
+    [Parameter] public RenderFragment? Content { get; set; }
+
+    [Parameter] public RenderFragment? Sidebar { get; set; }
+}
